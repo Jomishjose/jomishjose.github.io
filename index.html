@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jomish Jose — Performance Marketing & Growth</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0A0F1E;
+    --navy-mid: #111827;
+    --card: #1E293B;
+    --card-border: #2D3F5A;
+    --white: #F0F4FF;
+    --muted: #94A3B8;
+    --blue: #3B82F6;
+    --green: #10B981;
+    --blue-dim: rgba(59,130,246,0.12);
+    --green-dim: rgba(16,185,129,0.12);
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(10,15,30,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 700; font-size: 1.1rem;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.875rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--blue); color: #fff;
+    padding: 9px 20px; border-radius: 6px;
+    text-decoration: none; font-size: 0.875rem; font-weight: 600;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-glow {
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { max-width: 860px; position: relative; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--blue-dim); border: 1px solid rgba(59,130,246,0.25);
+    color: var(--blue); font-size: 0.8rem; font-weight: 600;
+    padding: 6px 14px; border-radius: 100px; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 28px;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--blue); border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700; line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  h1 .accent { color: var(--blue); }
+  h1 .accent-green { color: var(--green); }
+  .hero-sub {
+    font-size: 1.15rem; color: var(--muted);
+    max-width: 620px; margin-bottom: 40px;
+    line-height: 1.7;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--blue); color: #fff;
+    padding: 14px 28px; border-radius: 8px;
+    text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 0 0 rgba(59,130,246,0.4);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(59,130,246,0.35);
+  }
+  .btn-secondary {
+    background: transparent; color: var(--white);
+    padding: 14px 28px; border-radius: 8px;
+    text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    border: 1px solid var(--card-border);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--blue); background: var(--blue-dim); }
+
+  /* STAT STRIP */
+  .stat-strip {
+    padding: 0 48px;
+    margin-bottom: 0;
+  }
+  .stat-strip-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--card-border);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .stat-item {
+    background: var(--card);
+    padding: 32px 28px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.4rem; font-weight: 700;
+    color: var(--blue); line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-num.green { color: var(--green); }
+  .stat-label {
+    font-size: 0.8rem; color: var(--muted);
+    font-weight: 500; letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  section { padding: 100px 48px; }
+  .section-eyebrow {
+    font-size: 0.75rem; font-weight: 700;
+    color: var(--blue); letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700; letter-spacing: -0.02em;
+    line-height: 1.2; margin-bottom: 16px;
+  }
+  .section-lead {
+    color: var(--muted); font-size: 1.05rem;
+    max-width: 560px; margin-bottom: 56px;
+    line-height: 1.7;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--muted); line-height: 1.8;
+    margin-bottom: 16px; font-size: 0.975rem;
+  }
+  .about-text p strong { color: var(--white); }
+  .channels-grid {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 24px;
+  }
+  .channel-tag {
+    background: var(--blue-dim);
+    border: 1px solid rgba(59,130,246,0.2);
+    color: var(--blue); font-size: 0.8rem;
+    font-weight: 600; padding: 6px 14px;
+    border-radius: 6px; letter-spacing: 0.02em;
+  }
+  .tools-section { margin-top: 40px; }
+  .tools-label {
+    font-size: 0.75rem; font-weight: 700;
+    color: var(--muted); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .tools-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tool-pill {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--card-border);
+    color: var(--muted); font-size: 0.8rem;
+    padding: 5px 12px; border-radius: 6px;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 24px;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 32px;
+    position: relative;
+    transition: border-color 0.25s, transform 0.25s;
+    cursor: default;
+  }
+  .project-card:hover {
+    border-color: var(--blue);
+    transform: translateY(-4px);
+  }
+  .project-tag {
+    display: inline-block;
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .tag-ab { background: rgba(139,92,246,0.15); color: #A78BFA; border: 1px solid rgba(139,92,246,0.25); }
+  .tag-incr { background: rgba(16,185,129,0.12); color: var(--green); border: 1px solid rgba(16,185,129,0.25); }
+  .tag-channel { background: rgba(59,130,246,0.12); color: var(--blue); border: 1px solid rgba(59,130,246,0.25); }
+  .tag-lead { background: rgba(245,158,11,0.12); color: #FBBF24; border: 1px solid rgba(245,158,11,0.25); }
+  .tag-prog { background: rgba(236,72,153,0.12); color: #F472B6; border: 1px solid rgba(236,72,153,0.25); }
+
+  .project-role {
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--muted); letter-spacing: 0.05em;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .project-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem; font-weight: 700;
+    margin-bottom: 12px; line-height: 1.3;
+  }
+  .project-card p {
+    color: var(--muted); font-size: 0.9rem;
+    line-height: 1.7; margin-bottom: 24px;
+  }
+  .project-metrics {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    padding-top: 20px;
+    border-top: 1px solid var(--card-border);
+  }
+  .metric {
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .metric-val {
+    font-family: var(--font-display);
+    font-size: 1.25rem; font-weight: 700;
+    color: var(--green);
+  }
+  .metric-val.blue { color: var(--blue); }
+  .metric-label {
+    font-size: 0.72rem; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 0;
+    width: 1px; background: var(--card-border);
+  }
+  .timeline-item {
+    position: relative; margin-bottom: 56px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -32px; top: 8px;
+    width: 9px; height: 9px;
+    background: var(--blue); border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+  }
+  .timeline-date {
+    font-size: 0.8rem; color: var(--blue);
+    font-weight: 600; letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .timeline-item h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem; font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .timeline-company {
+    font-size: 0.9rem; color: var(--muted);
+    margin-bottom: 16px; font-weight: 500;
+  }
+  .timeline-item ul {
+    list-style: none; display: flex; flex-direction: column; gap: 8px;
+  }
+  .timeline-item ul li {
+    color: var(--muted); font-size: 0.9rem;
+    padding-left: 18px; position: relative;
+    line-height: 1.6;
+  }
+  .timeline-item ul li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--blue); font-size: 0.8rem;
+  }
+  .badge {
+    display: inline-block;
+    background: var(--green-dim);
+    color: var(--green); font-size: 0.7rem;
+    font-weight: 700; padding: 3px 8px; border-radius: 4px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    vertical-align: middle; margin-left: 8px;
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: linear-gradient(135deg, rgba(59,130,246,0.08) 0%, transparent 60%);
+    border-top: 1px solid var(--card-border);
+  }
+  .contact-inner {
+    max-width: 600px;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--card); border: 1px solid var(--card-border);
+    border-radius: 10px; padding: 20px 24px;
+    text-decoration: none; color: var(--white);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-link:hover { border-color: var(--blue); transform: translateX(4px); }
+  .contact-link-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: var(--blue-dim); border: 1px solid rgba(59,130,246,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .contact-link-text { display: flex; flex-direction: column; gap: 2px; }
+  .contact-link-label {
+    font-size: 0.75rem; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;
+  }
+  .contact-link-val { font-weight: 600; font-size: 0.95rem; }
+
+  footer {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--card-border);
+    padding: 28px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  footer p { color: var(--muted); font-size: 0.85rem; }
+  .footer-tag {
+    font-size: 0.8rem; color: var(--muted);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .footer-tag span { color: var(--green); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    section { padding: 64px 24px; }
+    .stat-strip { padding: 0 24px; }
+    .stat-strip-inner { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+  }
+
+  /* SCROLL ANIMATIONS */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>JJ</span> Jomish Jose</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Open to New Opportunities</div>
+    <h1>
+      Growth<br>
+      <span class="accent">engineered</span><br>
+      at <span class="accent-green">scale.</span>
+    </h1>
+    <p class="hero-sub">
+      9+ years turning acquisition budgets into measurable business outcomes.
+      Performance marketing, programmatic, mobile growth — across channels, platforms, and markets.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#projects">View Case Studies</a>
+      <a class="btn-secondary" href="#contact">Let's Talk</a>
+    </div>
+  </div>
+</section>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-strip-inner">
+    <div class="stat-item">
+      <div class="stat-num" data-count="9">0</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num green" data-count="9" data-suffix="Cr/mo">₹0</div>
+      <div class="stat-label">Peak Budget Managed</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" data-count="145" data-suffix="K+">0</div>
+      <div class="stat-label">Deposits Delivered (2024)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num green" data-count="30" data-suffix="%">0%</div>
+      <div class="stat-label">First Purchase Value Uplift</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-eyebrow">About</div>
+  <h2>The operator behind the numbers</h2>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>I'm <strong>Jomish Jose</strong>, Assistant Manager – Performance Marketing & Acquisition at <strong>Head Digital Works (A23 Games)</strong>, India's largest real-money gaming platform.</p>
+      <p>I manage a <strong>₹7–12 Cr/month acquisition budget</strong> across Meta, Google, Apple Search Ads, programmatic DSPs, OEM networks, and RTB channels — for A23 Rummy, A23 Poker, and Cricket.com. I lead a team of 6–10 and own strategy end-to-end: from media planning and creative testing to attribution architecture and board-level reporting.</p>
+      <p>Before A23, I built cross-channel performance capabilities at <strong>Affle India</strong> and <strong>Hexawebony</strong>, covering BFSI, automotive, tourism, and real estate verticals across global markets.</p>
+      <p>I care about experiments with real business decisions behind them, attribution that tells the truth, and teams that know why they're doing what they're doing.</p>
+
+      <div class="channels-grid" style="margin-top:28px;">
+        <span class="channel-tag">Meta Ads</span>
+        <span class="channel-tag">Google UAC</span>
+        <span class="channel-tag">Apple Search Ads</span>
+        <span class="channel-tag">Programmatic DSPs</span>
+        <span class="channel-tag">OEM Networks</span>
+        <span class="channel-tag">RTB</span>
+        <span class="channel-tag">Influencer Marketing</span>
+        <span class="channel-tag">Retargeting</span>
+      </div>
+    </div>
+    <div>
+      <div class="tools-section">
+        <div class="tools-label">MMPs & Analytics</div>
+        <div class="tools-grid">
+          <span class="tool-pill">Adjust</span>
+          <span class="tool-pill">AppsFlyer</span>
+          <span class="tool-pill">Google Analytics</span>
+          <span class="tool-pill">Tableau</span>
+          <span class="tool-pill">BI Dashboards</span>
+        </div>
+      </div>
+      <div class="tools-section" style="margin-top:28px;">
+        <div class="tools-label">DSPs & Networks</div>
+        <div class="tools-grid">
+          <span class="tool-pill">Moloco</span>
+          <span class="tool-pill">Liftoff</span>
+          <span class="tool-pill">AppsLovin</span>
+          <span class="tool-pill">Smadex</span>
+          <span class="tool-pill">RevX</span>
+          <span class="tool-pill">Remerge</span>
+          <span class="tool-pill">Bidease</span>
+          <span class="tool-pill">Jampp</span>
+        </div>
+      </div>
+      <div class="tools-section" style="margin-top:28px;">
+        <div class="tools-label">Skills</div>
+        <div class="tools-grid">
+          <span class="tool-pill">Team Leadership (6–10)</span>
+          <span class="tool-pill">A/B & Incrementality Testing</span>
+          <span class="tool-pill">Attribution Architecture</span>
+          <span class="tool-pill">Creative Strategy</span>
+          <span class="tool-pill">Retention & LTV</span>
+          <span class="tool-pill">Executive Reporting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background: var(--navy-mid); border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border);">
+  <div class="section-eyebrow">Case Studies</div>
+  <h2>Experiments that moved the needle</h2>
+  <p class="section-lead">Every project below was run as a structured experiment — with a hypothesis, a control group, and business decisions tied to the outcome.</p>
+
+  <div class="projects-grid">
+
+    <!-- Programmatic -->
+    <div class="project-card reveal">
+      <div><span class="project-tag tag-prog">Channel Build</span></div>
+      <div class="project-role">Program Lead · Aug 2022 – Present</div>
+      <h3>Programmatic: Zero to Major Acquisition Channel</h3>
+      <p>A23's acquisition depended entirely on Meta and Google, with rising CAC and no fallback. I introduced and scaled programmatic from scratch — testing 7 Tier-1 and 7 Tier-2 DSPs with ML bidding, vernacular creatives, and state-wise segmentation.</p>
+      <div class="project-metrics">
+        <div class="metric">
+          <div class="metric-val blue">₹12Cr</div>
+          <div class="metric-label">Peak Monthly Spend</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">145K+</div>
+          <div class="metric-label">Deposits in 2024</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val blue">2.3→5.4Cr</div>
+          <div class="metric-label">Annual Spend Scaled</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Maha Mela -->
+    <div class="project-card reveal">
+      <div><span class="project-tag tag-lead">Influencer Campaign</span></div>
+      <div class="project-role">Program Lead · Sept – Nov 2024</div>
+      <h3>Maha Mela: 60+ Influencer Scale-Up</h3>
+      <p>Competitors were winning with nano/micro creators while A23's traditional channels plateaued. Designed and led a regionally localized influencer strategy with 60+ creators (nano to macro), paid amplification, and real-time optimization tied to engagement signals.</p>
+      <div class="project-metrics">
+        <div class="metric">
+          <div class="metric-val">+67%</div>
+          <div class="metric-label">Weekly Downloads</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val blue">28%→42%</div>
+          <div class="metric-label">Download Share (1 week)</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">+57%</div>
+          <div class="metric-label">Audience Reach</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Cash -->
+    <div class="project-card reveal">
+      <div><span class="project-tag tag-ab">A/B Test</span></div>
+      <div class="project-role">Program Contributor · Feb 2024</div>
+      <h3>Add-Cash Drop-Off: Testimonial Video Intervention</h3>
+      <p>KYC-completed users were dropping off the Add-Cash page without depositing — a trust gap at the payment step. Tested localized testimonial videos (Marathi-first) triggered at exit, measuring conversion and retention across cohorts.</p>
+      <div class="project-metrics">
+        <div class="metric">
+          <div class="metric-val">+4.14%</div>
+          <div class="metric-label">D0 Conv. Uplift</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val blue">+4.68%</div>
+          <div class="metric-label">D0–D7 Conv. Uplift</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">+2.6%</div>
+          <div class="metric-label">Best State (ROI) D0–D7</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Playable Ads -->
+    <div class="project-card reveal">
+      <div><span class="project-tag tag-ab">A/B Test</span></div>
+      <div class="project-role">Program Lead · May – Jul 2023</div>
+      <h3>Playable vs Non-Playable Ads: A Cost-Quality Trade-off</h3>
+      <p>Investigated whether interactive playable ads could replace standard creatives without sacrificing user quality. Compared CPI, CPR, CAC, and ROAS head-to-head to find where playables win — and where they don't.</p>
+      <div class="project-metrics">
+        <div class="metric">
+          <div class="metric-val">−52%</div>
+          <div class="metric-label">CPI Reduction</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val blue">−60%</div>
+          <div class="metric-label">CPR Reduction</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val" style="color: #F87171;">+22%</div>
+          <div class="metric-label">CAC (quality trade-off)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Attribution Window -->
+    <div class="project-card reveal">
+      <div><span class="project-tag tag-channel">Attribution</span></div>
+      <div class="project-role">Program Lead · Jul 2025</div>
+      <h3>Attribution Window: 30D → 7D Shift</h3>
+      <p>A 30-day window was slowing retargeting cycles and inflating blended CAC. Led cross-functional alignment across BI, Analytics, and Marketing to reduce to 7 days, enabling faster audience recycling and sharper signals.</p>
+      <div class="project-metrics">
+        <div class="metric">
+          <div class="metric-val">+8%</div>
+          <div class="metric-label">Paid Conversions (7d)</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val blue">Faster RT</div>
+          <div class="metric-label">Cycles Improved</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">−6%</div>
+          <div class="metric-label">Organic (expected shift)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2UP Incrementality -->
+    <div class="project-card reveal">
+      <div><span class="project-tag tag-incr">Incrementality</span></div>
+      <div class="project-role">Program Contributor · May – Jul 2024</div>
+      <h3>2nd Purchase Incrementality: Ghost Bidding Study</h3>
+      <p>Retargeting budgets lacked proof of true incremental impact on repeat purchases. Designed a ghost bidding experiment (90/10 split) on mDSP to isolate genuine lift vs. organic behavior in already-converted users.</p>
+      <div class="project-metrics">
+        <div class="metric">
+          <div class="metric-val">+16.8%</div>
+          <div class="metric-label">Incremental 2UP</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val blue">+22.3%</div>
+          <div class="metric-label">Incremental App Opens</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">90/10</div>
+          <div class="metric-label">Ghost Bid Split</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-eyebrow">Career</div>
+  <h2>Where I've built</h2>
+  <p class="section-lead">A decade of brand-side and agency-side work across consumer platforms, mobile app ecosystems, and multi-vertical portfolios.</p>
+
+  <div class="timeline reveal">
+
+    <div class="timeline-item">
+      <div class="timeline-date">Jul 2022 – Present</div>
+      <h3>Assistant Manager – Performance Marketing & Acquisition <span class="badge">Promoted</span></h3>
+      <div class="timeline-company">Head Digital Works (A23 Games) · Hyderabad</div>
+      <ul>
+        <li>Manage ₹7–12 Cr/month acquisition budget across Meta, Google, ASA, programmatic, OEM & RTB channels</li>
+        <li>Lead UA strategy for A23 Rummy, A23 Poker, and Cricket.com</li>
+        <li>Built programmatic from zero to a major channel — scaled to ₹5.4 Cr annual spend (₹12 Cr peak)</li>
+        <li>Increased iOS Share of Voice from 10% to 17% in 6 months</li>
+        <li>Improved D3 & D7 retention by 15%, driving 27% Month-0 recovery uplift</li>
+        <li>Led Maha Mela influencer campaign with 60+ creators — 67% download uplift in one week</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Mar 2021 – Apr 2022</div>
+      <h3>Senior Manager – Performance Marketing</h3>
+      <div class="timeline-company">Hexawebony Pvt Ltd · Delhi</div>
+      <ul>
+        <li>Led team of 10+ across Search, Social, Display, Email, SMS & Affiliate channels</li>
+        <li>Owned media planning, budget allocation, and performance accountability across multiple client portfolios</li>
+        <li>Drove upsell and cross-sell opportunities, reducing CPA through audience segmentation</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Apr 2018 – Jun 2020</div>
+      <h3>Manager – Performance Marketing <span class="badge">Promoted</span></h3>
+      <div class="timeline-company">Affle India Limited · Delhi</div>
+      <ul>
+        <li>Managed 6-member team across BFSI, RMG, Automotive, Tourism & Real Estate verticals</li>
+        <li>Scaled mobile app acquisition across global markets, optimizing CPI & CPA</li>
+        <li>Led affiliate vendor and publisher partnerships; established campaign governance processes</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Aug 2017 – Mar 2018</div>
+      <h3>Account Manager</h3>
+      <div class="timeline-company">Global Digital Marketing Group · Delhi</div>
+      <ul>
+        <li>Executed CPI & CPL campaigns for Jabong, Goibibo, Nykaa, Medlife, and Zivame</li>
+        <li>Onboarded advertisers and managed strategic publisher relationships</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Jul 2015 – Jul 2016</div>
+      <h3>Digital Marketing Associate</h3>
+      <div class="timeline-company">Affle India Pvt Ltd · Delhi</div>
+      <ul>
+        <li>Supported mobile app marketing and user acquisition campaigns</li>
+        <li>Conducted DSP performance evaluation and traffic analysis</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="contact-inner">
+    <div class="section-eyebrow">Contact</div>
+    <h2>Let's build something measurable.</h2>
+    <p class="section-lead">Open to Growth Marketing Manager, Head of Performance Marketing, and senior acquisition leadership roles — in India and internationally.</p>
+
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:jomishmtthl1192@gmail.com">
+        <div class="contact-link-icon">✉</div>
+        <div class="contact-link-text">
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-val">jomishmtthl1192@gmail.com</span>
+        </div>
+      </a>
+      <a class="contact-link" href="tel:+919999695277">
+        <div class="contact-link-icon">📞</div>
+        <div class="contact-link-text">
+          <span class="contact-link-label">Phone</span>
+          <span class="contact-link-val">+91 99996 95277</span>
+        </div>
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/jomish-george-jose-b00043b7/" target="_blank" rel="noopener">
+        <div class="contact-link-icon">in</div>
+        <div class="contact-link-text">
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-val">linkedin.com/in/jomish-george-jose</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Jomish Jose. Performance Marketing & Growth.</p>
+  <div class="footer-tag">Based in <span>Hyderabad, India</span></div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Animated counters
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.textContent.charAt(0) === '₹' ? '₹' : '';
+    const duration = 1800;
+    const start = performance.now();
+    function step(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(eased * target);
+      el.textContent = prefix + current + (progress < 1 ? '' : suffix);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const statNums = document.querySelectorAll('.stat-num[data-count]');
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCounter(e.target);
+        statObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  statNums.forEach(el => statObserver.observe(el));
+</script>
+</body>
+</html>
