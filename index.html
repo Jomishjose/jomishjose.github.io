@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jomish Jose — Performance Marketing & Growth</title>
+<title>Jomish Jose - Performance Marketing & Growth</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -346,6 +346,55 @@
     vertical-align: middle; margin-left: 8px;
   }
 
+  /* SKILLS & CERTS */
+  .skills-certs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 0;
+  }
+  .sc-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .sc-card-label {
+    font-size: 0.72rem; font-weight: 700;
+    color: var(--muted); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 18px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .sc-card-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: var(--card-border);
+  }
+  .sc-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .sc-list li {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.9rem; color: var(--muted);
+  }
+  .sc-list li::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--blue); flex-shrink: 0;
+  }
+  .sc-list li.green-dot::before { background: var(--green); }
+  .lang-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.9rem;
+  }
+  .lang-item:last-child { border-bottom: none; }
+  .lang-level {
+    font-size: 0.75rem; color: var(--muted);
+    font-weight: 500;
+  }
+  @media (max-width: 900px) {
+    .skills-certs-grid { grid-template-columns: 1fr; }
+  }
+
   /* CONTACT */
   .contact-section {
     background: linear-gradient(135deg, rgba(59,130,246,0.08) 0%, transparent 60%);
@@ -424,6 +473,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a class="nav-cta" href="#contact">Get in Touch</a>
@@ -442,7 +492,7 @@
     </h1>
     <p class="hero-sub">
       9+ years turning acquisition budgets into measurable business outcomes.
-      Performance marketing, programmatic, mobile growth — across channels, platforms, and markets.
+      Performance marketing, programmatic, mobile growth - across channels, platforms, and markets.
     </p>
     <div class="hero-actions">
       <a class="btn-primary" href="#projects">View Case Studies</a>
@@ -480,7 +530,7 @@
   <div class="about-grid reveal">
     <div class="about-text">
       <p>I'm <strong>Jomish Jose</strong>, Assistant Manager – Performance Marketing & Acquisition at <strong>Head Digital Works (A23 Games)</strong>, India's largest real-money gaming platform.</p>
-      <p>I manage a <strong>₹7–12 Cr/month acquisition budget</strong> across Meta, Google, Apple Search Ads, programmatic DSPs, OEM networks, and RTB channels — for A23 Rummy, A23 Poker, and Cricket.com. I lead a team of 6–10 and own strategy end-to-end: from media planning and creative testing to attribution architecture and board-level reporting.</p>
+      <p>I manage a <strong>₹7–12 Cr/month acquisition budget</strong> across Meta, Google, Apple Search Ads, programmatic DSPs, OEM networks, and RTB channels - for A23 Rummy, A23 Poker, and Cricket.com. I lead a team of 6–10 and own strategy end-to-end: from media planning and creative testing to attribution architecture and board-level reporting.</p>
       <p>Before A23, I built cross-channel performance capabilities at <strong>Affle India</strong> and <strong>Hexawebony</strong>, covering BFSI, automotive, tourism, and real estate verticals across global markets.</p>
       <p>I care about experiments with real business decisions behind them, attribution that tells the truth, and teams that know why they're doing what they're doing.</p>
 
@@ -538,7 +588,7 @@
 <section id="projects" style="background: var(--navy-mid); border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border);">
   <div class="section-eyebrow">Case Studies</div>
   <h2>Experiments that moved the needle</h2>
-  <p class="section-lead">Every project below was run as a structured experiment — with a hypothesis, a control group, and business decisions tied to the outcome.</p>
+  <p class="section-lead">Every project below was run as a structured experiment - with a hypothesis, a control group, and business decisions tied to the outcome.</p>
 
   <div class="projects-grid">
 
@@ -547,7 +597,7 @@
       <div><span class="project-tag tag-prog">Channel Build</span></div>
       <div class="project-role">Program Lead · Aug 2022 – Present</div>
       <h3>Programmatic: Zero to Major Acquisition Channel</h3>
-      <p>A23's acquisition depended entirely on Meta and Google, with rising CAC and no fallback. I introduced and scaled programmatic from scratch — testing 7 Tier-1 and 7 Tier-2 DSPs with ML bidding, vernacular creatives, and state-wise segmentation.</p>
+      <p>A23's acquisition depended entirely on Meta and Google, with rising CAC and no fallback. I introduced and scaled programmatic from scratch - testing 7 Tier-1 and 7 Tier-2 DSPs with ML bidding, vernacular creatives, and state-wise segmentation.</p>
       <div class="project-metrics">
         <div class="metric">
           <div class="metric-val blue">₹12Cr</div>
@@ -591,7 +641,7 @@
       <div><span class="project-tag tag-ab">A/B Test</span></div>
       <div class="project-role">Program Contributor · Feb 2024</div>
       <h3>Add-Cash Drop-Off: Testimonial Video Intervention</h3>
-      <p>KYC-completed users were dropping off the Add-Cash page without depositing — a trust gap at the payment step. Tested localized testimonial videos (Marathi-first) triggered at exit, measuring conversion and retention across cohorts.</p>
+      <p>KYC-completed users were dropping off the Add-Cash page without depositing - a trust gap at the payment step. Tested localized testimonial videos (Marathi-first) triggered at exit, measuring conversion and retention across cohorts.</p>
       <div class="project-metrics">
         <div class="metric">
           <div class="metric-val">+4.14%</div>
@@ -613,7 +663,7 @@
       <div><span class="project-tag tag-ab">A/B Test</span></div>
       <div class="project-role">Program Lead · May – Jul 2023</div>
       <h3>Playable vs Non-Playable Ads: A Cost-Quality Trade-off</h3>
-      <p>Investigated whether interactive playable ads could replace standard creatives without sacrificing user quality. Compared CPI, CPR, CAC, and ROAS head-to-head to find where playables win — and where they don't.</p>
+      <p>Investigated whether interactive playable ads could replace standard creatives without sacrificing user quality. Compared CPI, CPR, CAC, and ROAS head-to-head to find where playables win - and where they don't.</p>
       <div class="project-metrics">
         <div class="metric">
           <div class="metric-val">−52%</div>
@@ -692,10 +742,10 @@
       <ul>
         <li>Manage ₹7–12 Cr/month acquisition budget across Meta, Google, ASA, programmatic, OEM & RTB channels</li>
         <li>Lead UA strategy for A23 Rummy, A23 Poker, and Cricket.com</li>
-        <li>Built programmatic from zero to a major channel — scaled to ₹5.4 Cr annual spend (₹12 Cr peak)</li>
+        <li>Built programmatic from zero to a major channel - scaled to ₹5.4 Cr annual spend (₹12 Cr peak)</li>
         <li>Increased iOS Share of Voice from 10% to 17% in 6 months</li>
         <li>Improved D3 & D7 retention by 15%, driving 27% Month-0 recovery uplift</li>
-        <li>Led Maha Mela influencer campaign with 60+ creators — 67% download uplift in one week</li>
+        <li>Led Maha Mela influencer campaign with 60+ creators - 67% download uplift in one week</li>
       </ul>
     </div>
 
@@ -707,6 +757,16 @@
         <li>Led team of 10+ across Search, Social, Display, Email, SMS & Affiliate channels</li>
         <li>Owned media planning, budget allocation, and performance accountability across multiple client portfolios</li>
         <li>Drove upsell and cross-sell opportunities, reducing CPA through audience segmentation</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Sept 2020 – Jan 2021</div>
+      <h3>Senior Manager – Performance Marketing</h3>
+      <div class="timeline-company">DigiRovers Solutions Pvt Ltd · Gurugram</div>
+      <ul>
+        <li>Managed performance campaigns across digital channels for client portfolios</li>
+        <li>Contributed to media strategy, optimization, and client reporting</li>
       </ul>
     </div>
 
@@ -744,12 +804,65 @@
   </div>
 </section>
 
+<!-- SKILLS, CERTS & LANGUAGES -->
+<section id="skills" style="background: var(--navy-mid); border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border);">
+  <div class="section-eyebrow">Skills & Credentials</div>
+  <h2>What I bring to the table</h2>
+  <p class="section-lead">Technical chops, certified knowledge, and the languages to work across markets.</p>
+
+  <div class="skills-certs-grid reveal">
+
+    <div class="sc-card">
+      <div class="sc-card-label">Top Skills</div>
+      <ul class="sc-list">
+        <li>AI Enablement & AI Tools Integration</li>
+        <li>Google Workspace (Advanced)</li>
+        <li>Mobile App Marketing & Attribution</li>
+        <li>User Acquisition & Growth Strategy</li>
+        <li>Performance Marketing & Paid Media</li>
+        <li>Team Leadership & Capability Building</li>
+        <li>Budget Planning & CAC Optimization</li>
+        <li>Retention & Monetization Strategy</li>
+        <li>Cross-functional Stakeholder Management</li>
+        <li>Data Analytics & Executive Reporting</li>
+      </ul>
+    </div>
+
+    <div class="sc-card">
+      <div class="sc-card-label">Certifications</div>
+      <ul class="sc-list">
+        <li class="green-dot">AI Fundamentals</li>
+        <li class="green-dot">AI For Everyone</li>
+        <li class="green-dot">Google Analytics Certification</li>
+        <li class="green-dot">Google Ads Display Certification</li>
+      </ul>
+    </div>
+
+    <div class="sc-card">
+      <div class="sc-card-label">Languages</div>
+      <div class="lang-item">
+        <span>English</span>
+        <span class="lang-level">Full Professional</span>
+      </div>
+      <div class="lang-item">
+        <span>Hindi</span>
+        <span class="lang-level">Full Professional</span>
+      </div>
+      <div class="lang-item">
+        <span>Malayalam</span>
+        <span class="lang-level">Native / Bilingual</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact" class="contact-section">
   <div class="contact-inner">
     <div class="section-eyebrow">Contact</div>
     <h2>Let's build something measurable.</h2>
-    <p class="section-lead">Open to Growth Marketing Manager, Head of Performance Marketing, and senior acquisition leadership roles — in India and internationally.</p>
+    <p class="section-lead">Open to Growth Marketing Manager, Head of Performance Marketing, and senior acquisition leadership roles - in India and internationally.</p>
 
     <div class="contact-links">
       <a class="contact-link" href="mailto:jomishmtthl1192@gmail.com">
@@ -778,7 +891,7 @@
 </section>
 
 <footer>
-  <p>© 2025 Jomish Jose. Performance Marketing & Growth.</p>
+  <p>© 2026 Jomish Jose. Performance Marketing & Growth.</p>
   <div class="footer-tag">Based in <span>Hyderabad, India</span></div>
 </footer>
 
